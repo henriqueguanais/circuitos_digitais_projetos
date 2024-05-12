@@ -20,8 +20,8 @@ signal JK: std_logic_vector(4 downto 0) := "00000";
 
 begin
 
-    clr_timer <= (not s_timer(0) and not s_timer(1) and s_timer(2)) or (not s_timer(0) and s_timer(1) and s_timer(2)) 
-    or (s_timer(0) and not s_timer(1) and not s_timer(2)) or (s_timer(0) and not s_timer(1) and s_timer(2));
+    clr_timer <= (not s_timer(2) and not s_timer(1) and s_timer(0)) or (not s_timer(2) and s_timer(1) and s_timer(0)) 
+    or (s_timer(2) and not s_timer(1) and not s_timer(0)) or (s_timer(2) and not s_timer(1) and s_timer(0));
 
     JK(0) <= '1';
     JK(1) <= Q(0);
@@ -41,6 +41,7 @@ begin
     tmr_25 <= Q(4) and Q(3) and not Q(2) and not Q(1) and Q(0);
     and_1 <= Q(4) and not Q(3) and Q(2) and not Q(1) and not Q(0);
     and_2 <= and_1 and not cont_end_t;
+
     tmr_20 <= and_2 or tmr_25;
 
 end log;

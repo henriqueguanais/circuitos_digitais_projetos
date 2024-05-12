@@ -41,7 +41,8 @@ architecture log of cofre is
     component cont_senha is
         port (s_cont: in  std_logic_vector(2 downto 0);
               add_cont, clk_cont: in std_logic;
-              cont_end: out std_logic);
+              cont_end: out std_logic;
+              cont_result: out std_logic_vector(1 downto 0));
     end component;
 
     component mde is
@@ -62,6 +63,7 @@ architecture log of cofre is
     signal senha_total: std_logic_vector(17 downto 0) := "000000000000000000";
     -- senha correta
     signal senha_correta: std_logic_vector(17 downto 0) := "000111000111000111";
+    signal cont_result: std_logic_vector(1 downto 0);
 
 begin
 
@@ -71,8 +73,7 @@ begin
     acesso_cofre: acesso port map(estado, out_cofre);
     reg_senha_cofre: reg_senha port map(senha, estado, btn_pwr, CK, btn_add, senha_total);
     comparador_18_bits_cofre: comparador_18_bits port map(senha_total, senha_correta, senha_ok);
-    cont_senha_cofre: cont_senha port map(estado, btn_add, CK, end_senha);
+    cont_senha_cofre: cont_senha port map(estado, btn_add, CK, end_senha, cont_result);
     mde_cofre: mde port map(CK, '0', btn_pwr, btn_add, end_senha, senha_ok, tmr_5, tmr_20, estado);
     
-
 end log;

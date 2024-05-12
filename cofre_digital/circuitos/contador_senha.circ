@@ -92,44 +92,58 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(140,300)" to="(190,300)"/>
     <wire from="(170,310)" to="(190,310)"/>
     <wire from="(140,310)" to="(150,310)"/>
-    <wire from="(200,350)" to="(240,350)"/>
     <wire from="(230,330)" to="(240,330)"/>
     <wire from="(230,300)" to="(230,330)"/>
     <wire from="(220,300)" to="(230,300)"/>
     <wire from="(270,340)" to="(320,340)"/>
     <wire from="(320,300)" to="(320,340)"/>
+    <wire from="(140,360)" to="(190,360)"/>
+    <wire from="(170,370)" to="(190,370)"/>
+    <wire from="(140,370)" to="(150,370)"/>
+    <wire from="(220,360)" to="(230,360)"/>
+    <wire from="(140,350)" to="(190,350)"/>
+    <wire from="(230,350)" to="(230,360)"/>
+    <wire from="(230,350)" to="(240,350)"/>
+    <wire from="(100,380)" to="(120,380)"/>
+    <wire from="(100,320)" to="(100,380)"/>
+    <wire from="(80,320)" to="(100,320)"/>
+    <wire from="(100,320)" to="(120,320)"/>
+    <comp lib="0" loc="(120,380)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+    </comp>
+    <comp lib="0" loc="(250,190)" name="Constant"/>
+    <comp lib="0" loc="(120,320)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+    </comp>
+    <comp lib="0" loc="(120,130)" name="Clock">
+      <a name="label" val="clock"/>
+    </comp>
+    <comp lib="1" loc="(220,300)" name="AND Gate">
+      <a name="inputs" val="3"/>
+    </comp>
+    <comp lib="5" loc="(460,180)" name="J-K Flip-Flop">
+      <a name="NegatePresetClear" val="true"/>
+    </comp>
+    <comp lib="0" loc="(310,150)" name="Constant"/>
+    <comp lib="1" loc="(270,340)" name="OR Gate"/>
+    <comp lib="1" loc="(540,270)" name="AND Gate"/>
+    <comp lib="1" loc="(170,370)" name="NOT Gate"/>
+    <comp lib="1" loc="(170,290)" name="NOT Gate"/>
+    <comp lib="5" loc="(350,180)" name="J-K Flip-Flop">
+      <a name="NegatePresetClear" val="true"/>
+    </comp>
     <comp lib="0" loc="(560,270)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="label" val="cont_end"/>
     </comp>
     <comp lib="1" loc="(170,310)" name="NOT Gate"/>
-    <comp lib="1" loc="(170,290)" name="NOT Gate"/>
-    <comp lib="1" loc="(270,340)" name="AND Gate"/>
-    <comp lib="0" loc="(200,350)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="add"/>
-    </comp>
-    <comp lib="1" loc="(540,270)" name="AND Gate"/>
-    <comp lib="0" loc="(250,190)" name="Constant"/>
-    <comp lib="1" loc="(220,300)" name="AND Gate">
+    <comp lib="1" loc="(220,360)" name="AND Gate">
       <a name="inputs" val="3"/>
     </comp>
-    <comp lib="0" loc="(120,320)" name="Splitter">
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="3"/>
-    </comp>
-    <comp lib="5" loc="(460,180)" name="J-K Flip-Flop">
-      <a name="NegatePresetClear" val="true"/>
-    </comp>
-    <comp lib="0" loc="(310,150)" name="Constant"/>
-    <comp lib="0" loc="(120,130)" name="Clock">
-      <a name="label" val="clock"/>
-    </comp>
-    <comp lib="5" loc="(350,180)" name="J-K Flip-Flop">
-      <a name="NegatePresetClear" val="true"/>
-    </comp>
-    <comp lib="0" loc="(120,320)" name="Pin">
+    <comp lib="0" loc="(80,320)" name="Pin">
       <a name="width" val="3"/>
       <a name="tristate" val="false"/>
       <a name="label" val="s"/>

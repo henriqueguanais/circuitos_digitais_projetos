@@ -1,0 +1,77 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity cofre is
+    port (senha: in  std_logic_vector(5 downto 0);
+	      btn_pwr, btn_add: in std_logic;
+          LEDR, LEDB, LEDG, out_cofre: out std_logic);
+          --display_unidade, display_dezena: out std_logic_vector(6 downto 0));
+end cofre;
+
+architecture log of cofre is
+
+    component timer is
+        port (s_timer: in  std_logic_vector(2 downto 0);
+              cont_end_t, clk_timer: in std_logic;
+              tmr_5, tmr_20: out std_logic);
+    end component;
+
+    component led is
+        port (s_led: in  std_logic_vector(2 downto 0);
+              LEDR_cp, LEDB_cp, LEDG_cp: out std_logic);
+    end component;
+
+    component acesso is
+		port(s     : in  std_logic_vector (2 downto 0);
+			  out_acesso : out  std_logic);
+    end component;
+
+    component reg_senha is
+		port(pwd            : in  std_logic_vector (5 downto 0);
+			 s  : in std_logic_vector (2 downto 0);
+			  pwr, clk, add : in  std_logic;
+			  R		      : out std_logic_vector (17 downto 0));
+    end component;
+
+    component comparador_18_bits is
+		port(A, B     : in  std_logic_vector (17 downto 0);
+			  pwd_cmp : out  std_logic);
+    end component;
+
+    component cont_senha is
+        port (s_cont: in  std_logic_vector(2 downto 0);
+              add_cont, clk_cont: in std_logic;
+              cont_end: out std_logic);
+    end component;
+
+    component mde is
+        port (ck, rst, pwr, add, pwd_len, pwd_cmp, tm5, tm20  : in  std_logic;
+                       q : out std_logic_vector(2 downto 0));
+    end component;
+
+    component ck_div is
+        port (ck_in : in  std_logic;
+              ck_out: out std_logic);
+    end component;
+
+    -- estado atual
+    signal estado: std_logic_vector(2 downto 0);
+    -- sinal fim de senha, clock, timer 5 e 20 segundos, sinal de senha correta
+    signal end_senha, clk_ini, CK, tmr_5, tmr_20, senha_ok: std_logic := '0'; 
+    -- senha total inserida pelo usuario
+    signal senha_total: std_logic_vector(17 downto 0);
+    -- senha correta
+    signal senha_correta: std_logic_vector(17 downto 0) := "000000000000000000";
+
+begin
+
+    timer_cofre: timer port map(estado, end_senha, CK, tmr_5, tmr_20);
+    led_cofre: led port map(estado, LEDR, LEDB, LEDG);
+    acesso_cofre: acesso port map(estado, out_cofre);
+    reg_senha_cofre: reg_senha port map(senha, estado, btn_pwr, CK, btn_add, senha_total);
+    comparador_18_bits_cofre: comparador_18_bits port map(senha_total, senha_correta, senha_ok);
+    cont_senha_cofre: cont_senha port map(estado, btn_add, CK, end_senha);
+    mde_cofre: mde port map(CK, '0', btn_pwr, btn_add, end_senha, senha_ok, tmr_5, tmr_20, estado);
+    ck_div_cofre: ck_div port map(clk_ini, CK);
+
+end log;

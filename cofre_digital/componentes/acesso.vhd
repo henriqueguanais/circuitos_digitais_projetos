@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity acesso is
+		port(s     : in  std_logic_vector (2 downto 0);
+			  out_acesso : out  std_logic);
+end acesso;
+
+
+architecture ckt of acesso is
+
+--------- EXECUCAO DO CODIGO---------------------------------------------------		
+
+begin
+		-- estado aberto == 101
+		out_acesso <= s(2) and not(s(1)) and s(0);
+		
+			
+end ckt;

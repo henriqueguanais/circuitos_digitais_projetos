@@ -97,51 +97,50 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(100,320)" to="(100,380)"/>
     <wire from="(80,320)" to="(100,320)"/>
     <wire from="(100,320)" to="(120,320)"/>
-    <wire from="(790,270)" to="(810,270)"/>
-    <wire from="(680,150)" to="(680,160)"/>
-    <wire from="(630,200)" to="(650,200)"/>
-    <wire from="(630,220)" to="(650,220)"/>
-    <wire from="(710,180)" to="(730,180)"/>
-    <wire from="(730,260)" to="(760,260)"/>
-    <wire from="(630,220)" to="(630,280)"/>
-    <wire from="(680,240)" to="(680,300)"/>
-    <wire from="(630,280)" to="(760,280)"/>
-    <wire from="(650,130)" to="(650,180)"/>
-    <wire from="(730,180)" to="(730,260)"/>
-    <wire from="(630,180)" to="(630,200)"/>
-    <wire from="(630,200)" to="(630,220)"/>
-    <wire from="(290,130)" to="(650,130)"/>
-    <wire from="(320,150)" to="(680,150)"/>
-    <wire from="(320,300)" to="(680,300)"/>
-    <wire from="(350,180)" to="(630,180)"/>
-    <comp lib="0" loc="(120,380)" name="Splitter">
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="3"/>
-    </comp>
+    <wire from="(540,270)" to="(560,270)"/>
+    <wire from="(480,260)" to="(510,260)"/>
+    <wire from="(350,180)" to="(380,180)"/>
+    <wire from="(380,200)" to="(400,200)"/>
+    <wire from="(380,220)" to="(400,220)"/>
+    <wire from="(460,180)" to="(480,180)"/>
+    <wire from="(430,150)" to="(430,160)"/>
+    <wire from="(380,180)" to="(380,200)"/>
+    <wire from="(380,200)" to="(380,220)"/>
+    <wire from="(400,130)" to="(400,180)"/>
+    <wire from="(290,130)" to="(400,130)"/>
+    <wire from="(320,150)" to="(430,150)"/>
+    <wire from="(480,180)" to="(480,260)"/>
+    <wire from="(320,300)" to="(430,300)"/>
+    <wire from="(380,220)" to="(380,280)"/>
+    <wire from="(430,240)" to="(430,300)"/>
+    <wire from="(380,280)" to="(510,280)"/>
+    <comp lib="1" loc="(170,290)" name="NOT Gate"/>
     <comp lib="0" loc="(250,190)" name="Constant"/>
-    <comp lib="5" loc="(710,180)" name="J-K Flip-Flop">
-      <a name="NegatePresetClear" val="true"/>
+    <comp lib="0" loc="(80,320)" name="Pin">
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="s"/>
     </comp>
     <comp lib="0" loc="(120,320)" name="Splitter">
       <a name="fanout" val="3"/>
       <a name="incoming" val="3"/>
     </comp>
+    <comp lib="1" loc="(270,340)" name="OR Gate"/>
     <comp lib="1" loc="(220,300)" name="AND Gate">
       <a name="inputs" val="3"/>
     </comp>
     <comp lib="0" loc="(310,150)" name="Constant"/>
-    <comp lib="1" loc="(270,340)" name="OR Gate"/>
-    <comp lib="1" loc="(170,370)" name="NOT Gate"/>
-    <comp lib="1" loc="(170,290)" name="NOT Gate"/>
-    <comp lib="5" loc="(350,180)" name="J-K Flip-Flop">
-      <a name="NegatePresetClear" val="true"/>
+    <comp lib="1" loc="(540,270)" name="AND Gate"/>
+    <comp lib="0" loc="(120,380)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
     </comp>
-    <comp lib="0" loc="(810,270)" name="Pin">
+    <comp lib="1" loc="(170,370)" name="NOT Gate"/>
+    <comp lib="0" loc="(560,270)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="label" val="cont_end"/>
     </comp>
-    <comp lib="1" loc="(790,270)" name="AND Gate"/>
     <comp lib="1" loc="(170,310)" name="NOT Gate"/>
     <comp lib="0" loc="(120,130)" name="Pin">
       <a name="tristate" val="false"/>
@@ -150,10 +149,11 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <comp lib="1" loc="(220,360)" name="AND Gate">
       <a name="inputs" val="3"/>
     </comp>
-    <comp lib="0" loc="(80,320)" name="Pin">
-      <a name="width" val="3"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="s"/>
+    <comp lib="5" loc="(350,180)" name="J-K Flip-Flop">
+      <a name="NegatePresetClear" val="true"/>
+    </comp>
+    <comp lib="5" loc="(460,180)" name="J-K Flip-Flop">
+      <a name="NegatePresetClear" val="true"/>
     </comp>
   </circuit>
 </project>

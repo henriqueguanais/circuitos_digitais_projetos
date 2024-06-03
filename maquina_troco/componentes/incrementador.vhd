@@ -2,66 +2,59 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity full_adder is
-    Port ( A    : in  STD_LOGIC;
-           B    : in  STD_LOGIC;
-           Cin  : in  STD_LOGIC;
-           Sum  : out STD_LOGIC;
-           Cout : out STD_LOGIC);
+  port(
+    A: in std_logic;
+    B: in std_logic;
+    Cin: in std_logic;
+    Sum: out std_logic;
+    Cout: out std_logic
+  );
 end full_adder;
 
 architecture Behavioral of full_adder is
 begin
-    Sum <= (A xor B) xor Cin;
-    Cout <= (A and B) or (Cin and (A xor B));
+  Sum <= (A xor B) xor Cin;
+  Cout <= (A and B) or (Cin and (A xor B));
 end Behavioral;
 
-
-### Entidade Principal
-
-vhdl
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity main_adder is
-    Port ( A  : in  STD_LOGIC_VECTOR(9 downto 0);
-           Cin : in  STD_LOGIC_VECTOR(6 downto 0);
-           Sum : out STD_LOGIC_VECTOR(9 downto 0));
+  port(
+    A: in std_logic_vector(9 downto 0);
+    B: in std_logic_vector(6 downto 0);
+    Cout: out std_logic_vector(9 downto 0)
+  );
 end main_adder;
 
 architecture Structural of main_adder is
-    signal B : STD_LOGIC_VECTOR(9 downto 0);
-    signal C : STD_LOGIC_VECTOR(9 downto 0); -- para armazenar os carries intermediários
+  signal S: std_logic_vector(9 downto 0); -- sinal intermediário para armazenar os valores de soma
+  signal Cout_Vector: std_logic_vector(9 downto 0); -- vetor para armazenar os valores de Cout
 
-    component full_adder
-        Port ( A    : in  STD_LOGIC;
-               B    : in  STD_LOGIC;
-               Cin  : in  STD_LOGIC;
-               Sum  : out STD_LOGIC;
-               Cout : out STD_LOGIC);
-    end component;
+  component full_adder
+    port(
+      A: in std_logic;
+      B: in std_logic;
+      Cin: in std_logic;
+      Sum: out std_logic;
+      Cout: out std_logic
+    );
+  end component;
 
 begin
-    -- Inicializando a entrada B
-    B(0) <= '0';
-    B(1) <= Sum(0);
-    B(2) <= Sum(1);
-    B(3) <= Sum(2);
-    B(4) <= Sum(3);
-    B(5) <= Sum(4);
-    B(6) <= Sum(5);
-    B(7) <= Sum(6);
-    B(8) <= Sum(7);
-    B(9) <= Sum(8);
+  -- Instanciando os 10 Full Adders
+  FA0: full_adder port map(A => A(0), B => B(0), Cin => '0', Sum => S(0), Cout => Cout_Vector(0));
+  FA1: full_adder port map(A => A(1), B => B(1), Cin => Cout_Vector(0), Sum => S(1), Cout => Cout_Vector(1));
+  FA2: full_adder port map(A => A(2), B => B(2), Cin => Cout_Vector(1), Sum => S(2), Cout => Cout_Vector(2));
+  FA3: full_adder port map(A => A(3), B => B(3), Cin => Cout_Vector(2), Sum => S(3), Cout => Cout_Vector(3));
+  FA4: full_adder port map(A => A(4), B => B(4), Cin => Cout_Vector(3), Sum => S(4), Cout => Cout_Vector(4));
+  FA5: full_adder port map(A => A(5), B => B(5), Cin => Cout_Vector(4), Sum => S(5), Cout => Cout_Vector(5));
+  FA6: full_adder port map(A => A(6), B => B(6), Cin => Cout_Vector(5), Sum => S(6), Cout => Cout_Vector(6));
+  FA7: full_adder port map(A => A(7), B => '0', Cin => Cout_Vector(6), Sum => S(7), Cout => Cout_Vector(7));
+  FA8: full_adder port map(A => A(8), B => '0', Cin => Cout_Vector(7), Sum => S(8), Cout => Cout_Vector(8));
+  FA9: full_adder port map(A => A(9), B => '0', Cin => Cout_Vector(8), Sum => S(9), Cout => Cout_Vector(9));
 
-    -- Instanciando os 10 Full Adders
-    FA0: full_adder port map (A(0), '0', Cin(0), Sum(0), C(0));
-    FA1: full_adder port map (A(1), Sum(0), Cin(1), Sum(1), C(1));
-    FA2: full_adder port map (A(2), Sum(1), Cin(2), Sum(2), C(2));
-    FA3: full_adder port map (A(3), Sum(2), Cin(3), Sum(3), C(3));
-    FA4: full_adder port map (A(4), Sum(3), Cin(4), Sum(4), C(4));
-    FA5: full_adder port map (A(5), Sum(4), Cin(5), Sum(5), C(5));
-    FA6: full_adder port map (A(6), Sum(5), Cin(6), Sum(6), C(6));
-    FA7: full_adder port map (A(7), Sum(6), '0', Sum(7), C(7));
-    FA8: full_adder port map (A(8), Sum(7), '0', Sum(8), C(8));
-    FA9: full_adder port map (A(9), Sum(8), '0', Sum(9), C(9));
+  -- Atribuindo o valor de S à saída Sum
+  Cout <= S;
 end Structural;

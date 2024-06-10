@@ -2,9 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity mde is
-   port (ck, rst, T, TemTroco, troco_liberado: in  std_logic;
-         condicao: in std_logic_vector(6 downto 0);
-                  q: out std_logic_vector(1 downto 0));
+   port (ck, rst, sa, za, sv, zv: in  std_logic;
+         pa, ta, pv, tv: in  std_logic;
+                  q: out std_logic_vector(3 downto 0));
 end mde;
 
 architecture logica of mde is

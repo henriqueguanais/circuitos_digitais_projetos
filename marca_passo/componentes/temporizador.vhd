@@ -2,8 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity temporizador is
-    port (clk_timer: in std_logic;
-          tmr_10, tmr_40: out std_logic);
+    port (clk_timer, clr_timer: in std_logic;
+          tmr_10, tmr_40: out std_logic;
+          cont_result: out std_logic_vector(5 downto 0));
 end temporizador;
 
 architecture log of temporizador is
@@ -13,7 +14,6 @@ component ffjk is
                             q : out std_logic);
 end component;
 
-signal clr_timer: std_logic := '0';
 signal Q: std_logic_vector(5 downto 0) := "000000";
 signal JK: std_logic_vector(5 downto 0) := "000000";
 
@@ -33,8 +33,9 @@ begin
     Q4: ffjk port map(clk_timer, clr_timer, '1', JK(4), JK(4), Q(4));
     Q5: ffjk port map(clk_timer, clr_timer, '1', JK(5), JK(5), Q(5));
 
-    clr_timer <= Q(5) and not Q(4) and Q(3) and not Q(2) and not Q(1) and Q(0);
     tmr_40 <= Q(5) and not Q(4) and Q(3) and not Q(2) and not Q(1) and not Q(0);
     tmr_10 <= not Q(5) and not Q(4) and Q(3) and not Q(2) and Q(1) and not Q(0);
+
+    cont_result <= Q;
 
 end log;

@@ -80,7 +80,6 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(230,210)" to="(230,230)"/>
     <wire from="(270,250)" to="(270,270)"/>
     <wire from="(370,250)" to="(370,270)"/>
-    <wire from="(460,250)" to="(460,270)"/>
     <wire from="(460,270)" to="(550,270)"/>
     <wire from="(550,250)" to="(550,270)"/>
     <wire from="(640,250)" to="(640,270)"/>
@@ -88,7 +87,6 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(330,230)" to="(340,230)"/>
     <wire from="(330,210)" to="(330,230)"/>
     <wire from="(330,210)" to="(340,210)"/>
-    <wire from="(420,230)" to="(430,230)"/>
     <wire from="(420,210)" to="(430,210)"/>
     <wire from="(420,210)" to="(420,230)"/>
     <wire from="(510,230)" to="(520,230)"/>
@@ -109,7 +107,6 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(270,270)" to="(370,270)"/>
     <wire from="(590,190)" to="(590,240)"/>
     <wire from="(580,190)" to="(590,190)"/>
-    <wire from="(490,190)" to="(500,190)"/>
     <wire from="(500,190)" to="(500,240)"/>
     <wire from="(670,190)" to="(690,190)"/>
     <wire from="(690,190)" to="(690,240)"/>
@@ -122,7 +119,6 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(230,50)" to="(240,50)"/>
     <wire from="(370,150)" to="(460,150)"/>
     <wire from="(460,150)" to="(550,150)"/>
-    <wire from="(460,150)" to="(460,170)"/>
     <wire from="(550,150)" to="(640,150)"/>
     <wire from="(550,150)" to="(550,170)"/>
     <wire from="(640,150)" to="(640,170)"/>
@@ -268,9 +264,20 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     <wire from="(690,510)" to="(810,510)"/>
     <wire from="(740,540)" to="(760,540)"/>
     <wire from="(690,540)" to="(720,540)"/>
-    <comp lib="5" loc="(490,190)" name="J-K Flip-Flop">
-      <a name="NegatePresetClear" val="true"/>
-    </comp>
+    <wire from="(470,280)" to="(850,280)"/>
+    <wire from="(920,240)" to="(920,310)"/>
+    <wire from="(460,140)" to="(460,150)"/>
+    <wire from="(480,310)" to="(920,310)"/>
+    <wire from="(460,270)" to="(460,320)"/>
+    <wire from="(470,230)" to="(470,280)"/>
+    <wire from="(880,300)" to="(880,320)"/>
+    <wire from="(910,240)" to="(920,240)"/>
+    <wire from="(460,320)" to="(880,320)"/>
+    <wire from="(460,140)" to="(880,140)"/>
+    <wire from="(880,140)" to="(880,220)"/>
+    <wire from="(480,190)" to="(480,310)"/>
+    <wire from="(420,230)" to="(470,230)"/>
+    <wire from="(480,190)" to="(500,190)"/>
     <comp lib="0" loc="(490,470)" name="Tunnel">
       <a name="label" val="Q4"/>
     </comp>
@@ -400,6 +407,9 @@ This file is intended to be loaded by Logisim http://logisim.altervista.org
     </comp>
     <comp lib="0" loc="(190,470)" name="Tunnel">
       <a name="label" val="Q4"/>
+    </comp>
+    <comp lib="5" loc="(910,240)" name="J-K Flip-Flop">
+      <a name="NegatePresetClear" val="true"/>
     </comp>
     <comp lib="0" loc="(690,570)" name="Tunnel">
       <a name="label" val="Q3"/>

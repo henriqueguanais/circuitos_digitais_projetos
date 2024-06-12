@@ -19,14 +19,14 @@ begin
     elsif (ck'event and ck ='1') then    
       case estado is
         when RSTA =>     
-          ta <= '1'; 
-          tv <= '0';
+          ta <= '0'; 
+          tv <= '1';
           pa <= '0';
           pv <= '0';                   
           estado <= ESA;
         when ESA =>  
-          ta <= '0';
-          tv <= '0';
+          ta <= '1';
+          tv <= '1';
           pa <= '0';
           pv <= '0';                        
           if sa = '0' and za = '0' then estado <= ESA; 
@@ -35,19 +35,19 @@ begin
           end if;
         when CA =>   
           pa <= '1';                      
-          ta <= '0';
-          tv <= '0';
+          ta <= '1';
+          tv <= '1';
           pv <= '0';
           estado <= RSTV;
         when RSTV =>                         
-          tv <= '1'; 
-          ta <= '0';
+          tv <= '0'; 
+          ta <= '1';
           pa <= '0';
           pv <= '0';                   
           estado <= ESV;
         when ESV =>                         
-          ta <= '0';
-          tv <= '0';
+          ta <= '1';
+          tv <= '1';
           pa <= '0';
           pv <= '0';                        
           if sv = '0' and zv = '0' then estado <= ESV; 
@@ -56,8 +56,8 @@ begin
           end if;
         when CV =>                         
           pv <= '1';                      
-          ta <= '0';
-          tv <= '0';
+          ta <= '1';
+          tv <= '1';
           pa <= '0';
           estado <= RSTA;
         end case;

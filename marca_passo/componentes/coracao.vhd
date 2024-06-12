@@ -21,15 +21,20 @@ component mde_coracao is
                    q: out std_logic_vector(2 downto 0));
 end component;
 
-    signal clr_timer1, clk_timer2: std_logic := '0';
-    signal tmr_10_1, tmr_40_1, tmr_10_2, tmr_40_2: std_logic;
-    signal cont_result1: std_logic_vector(5 downto 0);
-    signal cont_result2: std_logic_vector(5 downto 0);
+    signal clr_timerA, clr_timerV: std_logic := '0';
+    signal tmr_10_A, tmr_40_A, tmr_10_V, tmr_40_V: std_logic;
+    signal cont_resultA: std_logic_vector(5 downto 0);
+    signal cont_resultV: std_logic_vector(5 downto 0);
+    signal estado: std_logic_vector(2 downto 0);
+    signal sa_mde, sv_mde: std_logic;
 
 begin 
 
-    temporizador1: temporizador port map(clk, clr_timer1, tmr_10_1, tmr_40_1, cont_result1);
-    temporizador2: temporizador port map(clk, clr_timer2, tmr_10_2, tmr_40_2, cont_result2);
+    mde_cor: mde_coracao port map(clk, '0', tmr_10_A, tmr_40_V, clr_timerA, clr_timerV, sa_mde, sv_mde, estado);
+    temporizadorA: temporizador port map(clk, clr_timerA, tmr_10_A, tmr_40_A, cont_resultA);
+    temporizadorV: temporizador port map(clk, clr_timerV, tmr_10_V, tmr_40_V, cont_resultV);
 
+    sa <= sa_mde and SW_coracao(0);
+    sv <= sv_mde and SW_coracao(1);
    
 end logica;

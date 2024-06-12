@@ -1,12 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity ck_div is
+entity ck_100 is
    port (ck_in : in  std_logic;
          ck_out: out std_logic);
-end ck_div;
+end ck_100;
 
-architecture logica of ck_div is
+architecture logica of ck_100 is
 signal ax : std_logic := '0';
 
 begin 

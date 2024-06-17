@@ -16,6 +16,12 @@ component temporizador is
                   cont_result: out std_logic_vector(5 downto 0));
 end component;
 
+component temporizador_marca is
+    port (clk_timer, clr_timer: in std_logic;
+          tmr_11, tmr_41: out std_logic;
+          cont_result: out std_logic_vector(5 downto 0));
+end component;
+
 component coracao is
       port (clk: in std_logic;
             SW_coracao: in std_logic_vector(1 downto 0);
@@ -53,9 +59,9 @@ begin
 
       LED_clock <= clk_marca;
 
-      mde_marca: mde port map(clk_marca, KEY, sa, tmr_10_A, sv, tmr_40_V, pa, clr_timerA, pv, clr_timerV, estado);
-      temporizadorA: temporizador port map(clk_marca, clr_timerA, tmr_10_A, tmr_40_A, cont_resultA);
-      temporizadorV: temporizador port map(clk_marca, clr_timerV, tmr_10_V, tmr_40_v, cont_resultV);
+      mde_marca: mde port map(clk_marca, not(KEY), sa, tmr_10_A, sv, tmr_40_V, pa, clr_timerA, pv, clr_timerV, estado);
+      temporizadorA: temporizador_marca port map(clk_marca, clr_timerA, tmr_10_A, tmr_40_A, cont_resultA);
+      temporizadorV: temporizador_marca port map(clk_marca, clr_timerV, tmr_10_V, tmr_40_v, cont_resultV);
       coracao_marca: coracao port map(clk_marca, SW_coracao, sa, sv);
 
       LEDG(1) <= pv;
